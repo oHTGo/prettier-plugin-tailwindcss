@@ -67,6 +67,10 @@ function getClassOrderPolyfill(classes, { env }) {
   return classNamesWithOrder
 }
 
+function removeUnnecessaryWhitespace(str) {
+  return str.replaceAll(/\s+/g, ' ')
+}
+
 function sortClasses(
   classStr,
   { env, ignoreFirst = false, ignoreLast = false },
@@ -106,7 +110,7 @@ function sortClasses(
     result += `${classes[i]}${whitespace[i] ?? ''}`
   }
 
-  return prefix + result + suffix
+  return removeUnnecessaryWhitespace(prefix + result + suffix)
 }
 
 function sortClassList(classList, { env }) {
